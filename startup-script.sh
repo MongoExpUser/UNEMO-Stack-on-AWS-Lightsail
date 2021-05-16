@@ -13,7 +13,7 @@
 #  1) Installs additional Ubuntu packages                                                           #
 #  2) Installs and configures Node.js v16.x and Express v5.0.0-alpha.8 web server framework         #
 #     Installs other node.js packages and set firewall rules for web server                         #
-#  3) Installs mongodb server and set firewall rules for mongodb server                             #
+#  3) Installs and configures mongodb server and set firewall rules for mongodb server              #
 #...................................................................................................#
 
 
