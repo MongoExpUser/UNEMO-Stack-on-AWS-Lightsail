@@ -113,7 +113,7 @@ install_and_configure_nodejs_web_server () {
       "keywords": [
         "Node.js",
         "Express.js",
-        "PostgreSQL\""
+        "MongoDB\""
       ]
     }' > package.json
         
