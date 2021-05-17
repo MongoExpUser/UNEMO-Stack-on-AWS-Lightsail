@@ -171,8 +171,8 @@ def main():
         "lightsail_server_names" : ["server", "server"],
         "lightsail_server_blueprint_ids" : ["ubuntu_20_04", "ubuntu_20_04"],
         "lightsail_server_bundle_ids" : ["micro_2_0", "micro_2_0"],
-        "lightsail_server_tags_keys_version_nodejs" : ["NodeJS 16.0.1", "NodeJS 16.0.1"],
-        "lightsail_server_tags_keys_version_mongodb" : ["MongoDB 4.4.6", "MongoDB 4.4.6"],
+        "lightsail_server_tags_keys_version_nodejs" : ["NodeJS 16.0.x", "NodeJS 16.0.x"],
+        "lightsail_server_tags_keys_version_mongodb" : ["MongoDB 4.4.x", "MongoDB 4.4.x"],
         "lightsail_server_tags_empty_values" : ["", ""],
         "lightsail_server_static_ip_names" : ["static-ip", "static-ip"],
         # 3. launch or start-up script(s) variables
