@@ -169,14 +169,15 @@ install_and_configure_nodejs_web_server () {
 
 
 install_and_configure_mongodb_server () {
-  if [ $enable_mongodb_server = true ]
+  if [ $enable_mongodb_server == true ]
   then
-    # install mongodb (Mongodb v4.4x on Ubuntu 20.04 LTS)
-    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-    sudo apt-get install gnupg
-    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-    sudo apt-get update
+    # 1. install mongodb server, client and other tools - version 6.0
+    # version 6.0 supports Ubuntu 20.04 LTS but not 22.04 LTS yet as at Dec 16 2022
+    wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+    sudo apt-get -y update
     sudo apt-get install -y mongodb-org
+    echo -e "Y"
     echo -e "Y"
     
     # set firewall rule for mongodb-server
@@ -198,8 +199,9 @@ install_and_configure_mongodb_server () {
 # 6) keyFile              - OPTIONAL for replica  - /etc/ssl/keyFile.key         - security
 
 
-# 1. create mongod.log file
+# 1. create mongod.log file and set its permission
 sudo echo '# mongod.log file' > /var/log/mongodb/mongod.log
+sudo chmod -R 777 /var/log/mongodb/mongod.log
     
 
 # 2. re-create or edit mongod.conf file with initial: storage, log, net, process, monitoring, security and other desired settings
@@ -277,19 +279,8 @@ sudo echo '# add keyFile content here
     # change ownership to mongodb on keyFile.key file: do this on all replicas
     sudo chown mongodb:mongodb /etc/ssl/keyFile.key
     
-    # set  permssion on /mongod.log
-    sudo chmod -R 777 /var/log/mongodb/mongod.log
-
-    # enable mongodb.service
-    sudo systemctl enable mongodb.service
-    sudo systemctl enable mongod.service
-        
-    # re-load
-    sudo systemctl daemon-reload
-    
     # by default, mongdb is not started after installtion
-    
-    # To START MongoDB automatically as part of this deployment, leave the next line uncommented:
+    # to START MongoDB automatically as part of this deployment, leave the next line uncommented:
     sudo mongod --quiet --config /etc/mongod.conf
         
     # To STOP MongoDB:
