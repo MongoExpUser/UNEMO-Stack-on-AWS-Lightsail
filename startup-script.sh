@@ -169,7 +169,7 @@ install_and_configure_nodejs_web_server () {
 
 
 install_and_configure_mongodb_server () {
-  if [ $enable_mongodb_server == true ]
+  if [ $enable_mongodb_server = true ]
   then
     # 1. install mongodb server, client and other tools - version 6.0
     # version 6.0 supports Ubuntu 20.04 LTS but not 22.04 LTS yet as at Dec 16 2022
